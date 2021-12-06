@@ -27,9 +27,13 @@ galleryStyle.flexDirection = 'row-reverse';
 galleryStyle.listStyle = 'none';
 galleryStyle.justifyContent = 'space-between';
 
-images.forEach(element => {
-  galleryEl.insertAdjacentHTML(
-    'afterbegin',
-    `<li><img src = '${element.url}' alt = '${element.alt}'  width = '500' height = '450'/></li>`,
-  );
-});
+const createGalleryItem = ({url, alt }) =>
+`<li><img src = '${url}' alt = '${alt}'  width = '300' height = '200'/></li>`;
+const createGallery = images.reduce(
+  (acc, item) => acc + createGalleryItem(item),
+  ""
+);
+galleryEl.insertAdjacentHTML(
+    'afterbegin', createGallery);
+
+
